@@ -467,7 +467,10 @@ a:active {
 }
 
 .section-footer {
-  padding: var(--section-footer-padding) var(--section-footer-padding) var(--section-footer-padding) var(--section-footer-padding); 
+  padding-left: var(--section-footer-padding); 
+  padding-right: var(--section-footer-padding); 
+  padding-top: var(--section-footer-padding); 
+  padding-bottom: var(--section-footer-padding); 
 }
 
 .section-title {
@@ -479,5 +482,8 @@ a:active {
 }
 
 .footer {
-  padding: var(--footer-padding) var(--footer-padding) var(--footer-padding) var(--footer-padding);
+  padding-left: var(--footer-padding);
+  padding-bottom: var(--footer-padding);
+  padding-right: var(--footer-padding);
+  padding-top: var(--footer-padding);
 }
