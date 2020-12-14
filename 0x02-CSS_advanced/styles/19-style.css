@@ -542,6 +542,6 @@ ul.row {
   color: val(--text-color);
 }
 
-ul.footer {
+.footer > ul {
   text-align: right;
 }
