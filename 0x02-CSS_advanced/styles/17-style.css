@@ -453,7 +453,7 @@ a:active {
 
 .section-header {
   text-align: var(--section-header-align);
-  padding: var(section-header-padding) var(section-header-padding) var(section-header-padding) var(section-header-padding);
+  padding: var(--section-header-padding) var(--section-header-padding) var(--section-header-padding) var(--section-header-padding);
 }
 
 .section-body {
