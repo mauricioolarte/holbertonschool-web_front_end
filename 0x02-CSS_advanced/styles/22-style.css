@@ -395,11 +395,7 @@ template {
   --nav-item-link-hover: var(--color-primary);
   --section-tagline-margin: 0;
 }
-html[data-theme="dark"] {
-  --text-color: var(--color-white);
-  --section-title-color: var(--color-white);
-  background-color: var(--color-black);
-}
+
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
@@ -555,4 +551,10 @@ ul.row {
 [class^="col-"] {
   float: left;
   padding: 0.5rem;
+}
+
+html[data-section-theme="dark"] {
+  --text-color: var(--color-white);
+  --section-title-color: var(--color-white);
+  background-color: var(--color-black);
 }
