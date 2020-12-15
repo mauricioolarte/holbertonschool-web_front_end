@@ -660,7 +660,7 @@ background-color: var(--color-light-grey);
   display: var(--header-logo-link-display);
   position: var(--header-logo-link-position);
   align-items: var(--header-logo-link-top);
-  justify-content: var(--header-logo-link-left);
+  text-align: var(--header-logo-link-left);
 }
 
 
