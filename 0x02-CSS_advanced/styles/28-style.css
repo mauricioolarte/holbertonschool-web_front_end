@@ -659,8 +659,8 @@ background-color: var(--color-light-grey);
 .header-logo a {
   display: var(--header-logo-link-display);
   position: var(--header-logo-link-position);
-  vertical-align: var(--header-logo-link-top);
-  align-items: var(--header-logo-link-left);
+  align-items: var(--header-logo-link-top);
+  justify-content: var(--header-logo-link-left);
 }
 
 
