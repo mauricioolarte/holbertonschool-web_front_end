@@ -698,7 +698,7 @@ background-color: var(--color-light-grey);
   z-index: 1;
 }
 
-.card-work:hover .card-inner {
+.card-work .card-inner:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
