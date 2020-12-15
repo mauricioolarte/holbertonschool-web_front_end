@@ -629,7 +629,7 @@ background-color: var(--color-light-grey);
 }
 
 .section-hero {
-  background-size: 2ex;
+  background-size: 2em;
   width: 90rem;
   height: auto;
 }
