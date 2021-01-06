@@ -711,7 +711,7 @@
 		font-size: var(--font-size-small);
 	}
 
-	/* Form group
+/* Form group
 ============================= */
 
 .form-group {
@@ -728,7 +728,7 @@
 /* Form field
 ============================= */
 
-.form-field-continer {
+.form-field-container {
 	position: relative;
 }
 
