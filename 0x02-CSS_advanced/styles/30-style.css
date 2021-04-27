@@ -714,7 +714,7 @@ ul.row {
 .card-work .card-title {
   text-align: center;
   margin: 0;
-  opacity: 0.01;
+  opacity: 0;
   height: 100%;
   position: relative;
 }
@@ -734,6 +734,6 @@ ul.row {
   content: "";
 }
 
-/* .card-work:hover .card-title {
+.card-work:hover .card-title {
   opacity: 1;
-} */
+}
