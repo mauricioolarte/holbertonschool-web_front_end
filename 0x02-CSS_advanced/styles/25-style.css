@@ -399,7 +399,7 @@ template {
   --nav-item-margin: 0 0 3rem 0;
   --nav-item-link-hover: var(--color-primary);
   --section-tagline-margin: 0;
-  --button-display: inline-block;
+  /* --button-display: inline-block; */
   --button-padding: 1.5rem 3rem;
   --button-border: 0.2rem solid var(--color-primary);
   --button-color: color-black;
@@ -590,7 +590,7 @@ ul.row {
   --text-color: var(--color-white);
   --section-title-color: var(--color-white);
   background-color: var(--color-black);
-  /* --button-color: var(--color-white); */
+  --button-color: var(--color-white);
 }
 
 .footer-address {
