@@ -725,7 +725,8 @@ ul.row {
   padding-top: 45%;
 }
 
-.card-work .card-title::after a {
+.card-work::after,
+.card-title::after a {
   position: absolute;
   top: 0;
   bottom: 0;
