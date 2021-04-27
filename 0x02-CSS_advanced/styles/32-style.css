@@ -10,11 +10,13 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
- *, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
- html {
+html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -180,7 +182,8 @@ textarea {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -190,7 +193,8 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -364,7 +368,8 @@ template {
   --color-light-grey: #f3f3f3;
   --color-dark-grey: #353535;
   --text-color: var(--color-black);
-  --font-family-base: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-family-base: "Open Sans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
   --font-family-title: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-size-small: 1.2rem;
   --font-size-medium: 1.6rem;
@@ -409,9 +414,8 @@ template {
   --header-logo-link-position: absolute;
   --header-logo-link-top: -1rem;
   --header-logo-link-left: 0;
-  --transition-duration: .3s;
+  --transition-duration: 0.3s;
   --transition-cubic-bezier: cubic-bezier(0.17, 0.67, 0, 1.01);
-  
 }
 
 html {
@@ -427,8 +431,12 @@ body {
   line-height: var(--line-height-base);
 }
 
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family-title);
   font-weight: var(--font-weight-bold);
 }
@@ -462,6 +470,7 @@ a:active {
   color: var(--button-hover-color);
   text-decoration: var(--button-hover-text-decoration);
   background-color: var(--button-hover-background);
+  transition-duration: var(--transition-duration);
 }
 
 .visually-hidden {
@@ -507,7 +516,7 @@ a:active {
 
 .section-footer {
   text-align: var(--section-footer-align);
-  padding: var(--section-footer-padding); 
+  padding: var(--section-footer-padding);
 }
 
 .section-title {
@@ -586,7 +595,7 @@ ul.row {
   padding: 0.5rem;
 }
 
-[data-section-theme='dark'] {
+[data-section-theme="dark"] {
   --text-color: var(--color-white);
   --section-title-color: var(--color-white);
   background-color: var(--color-black);
@@ -594,7 +603,7 @@ ul.row {
 }
 
 .footer-address {
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 .social-link {
@@ -610,9 +619,9 @@ ul.row {
 }
 
 .card-services a {
-display: block;
-padding: 2rem;
-background-color: var(--color-light-grey);
+  display: block;
+  padding: 2rem;
+  background-color: var(--color-light-grey);
 }
 
 .card-services a:hover {
@@ -634,7 +643,7 @@ background-color: var(--color-light-grey);
 .card-testimonial .card-quote cite {
   display: block;
   padding-top: 1rem;
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 
 .section-hero {
@@ -674,6 +683,7 @@ background-color: var(--color-light-grey);
   background-color: var(--color-white);
   width: 0;
   height: 0.2rem;
+  transition: var(transition-cubic-bezier) var(–transition-duration);
 }
 
 .nav .nav-item:hover .nav-link::before {
