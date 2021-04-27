@@ -734,6 +734,6 @@ ul.row {
   content: "";
 }
 
-.card-work:hover .card-title {
-  /* opacity: 1; */
-}
+/* .card-work:hover .card-title {
+  opacity: 1;
+} */
