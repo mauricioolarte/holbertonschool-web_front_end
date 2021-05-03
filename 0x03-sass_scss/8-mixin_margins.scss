@@ -1,0 +1,8 @@
+@mixin magins($size) {
+  margin-left: $size;
+  margin-right: $size;
+}
+
+body {@include magins(10);}
+div {@include magins(15);}
+
