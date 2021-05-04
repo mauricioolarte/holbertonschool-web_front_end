@@ -1,6 +1,6 @@
 @mixin magins($size) {
-  margin-left: $size;
-  margin-right: $size;
+  margin-left: #{$size}px;
+  margin-right: #{$size}px;
 }
 
 body {@include magins(10);}
