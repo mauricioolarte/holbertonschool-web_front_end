@@ -1,0 +1,5 @@
+@for $widthcol from 1 to 5 {
+  .col-#{$widthcol} {
+    width: 100% / $widthcol;
+  }
+}
