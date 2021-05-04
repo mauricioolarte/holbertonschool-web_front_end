@@ -1,7 +1,7 @@
 h1 {
   font-size: 20px;
   @for $mwidth from 1 to 4 {
-    @media screen and (max-width: 960px / $mwidth){
+    @media screen and (max-width: 960px - 320*($mwidth - 1)){
       & {
         font-size: 20px - 2 * $mwidth;}
       @if (960px / $mwidth) <= 320 {
