@@ -26,7 +26,6 @@
 		--color-dark-grey: #353535;
 		--color-red: #cd3e65;
 		--color-green: #08805b;
-
 	
 		--text-color: var(--color-black);
 		--valid-color: var(--color-green);
@@ -155,17 +154,15 @@
 		transition-duration: var(--transition-duration);
 		transition-property: color, background-color;
 	}
-
 	.button-primary {
 		color: var(--color-white);
 		background-color: var(--color-primary);
 	}
-	
 	.button-primary:hover {
 		color: var(--color-primary);
 		background-color: var(--color-white);
 	}
-
+	
 	/* Helpers
 			============================= */
 	
@@ -702,21 +699,22 @@
 		white-space: nowrap;
 	}
 
-	input[type="textarea"],input[type="text"],input[type="email"] {
+	input[type="text"], input[type="email"], textarea {
 		position: relative;
 		width: 100%;
 		padding: 1.2rem;
 		line-height: 1;
-		border: 1rem solid var(--color-white);
+		border: 0.1rem solid var(--color-black);
+		background-color: var(--color-white);
 		box-shadow: none;
 		outline: 0;
 	}
 
-	input[type="text"],input[type="email"] {
+	input[type="text"], input[type="email"] {
 		padding-right: 3rem;
 	}
 
-	input[type="textarea"],input[type="text"],input[type="email"]:focus {
+	input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 		border: .1rem solid var(--color-grey);
 		background-color: var(--color-light-grey);
 	}
@@ -726,9 +724,8 @@
 		font-size: var(--font-size-small);
 	}
 
-/* Form group
+	/* Form group
 ============================= */
-
 .form-group {
 	padding: 1rem;
 	margin: 0;
@@ -761,17 +758,18 @@
 	color: var(--color-dark-grey);
 	font-size: var(--font-size-small);
 	max-height: 0;
-	transition: .3s;
+	transition: 0.3s;
 	overflow: hidden;
 }
 
-.form-group .form-help:focus-within {
+.form-group:focus-within .form-help {
 	max-height: 20rem;
 	margin: .4rem 0 0;
 }
 
 /* Form error handling
 ============================= */
+
 /* The following code is used to place the icon in the after pseudo element. Because after and before are not possible in an input, we need to use a span that will be positioned on the right of our input. */
 
 input:not(:placeholder-shown) ~ .form-field-icon::after {
@@ -812,5 +810,4 @@ input:required:valid:not(:placeholder-shown),
 textarea:valid:not(:placeholder-shown) {
   border: 0.1rem solid var(--valid-color);
 }
-
 
