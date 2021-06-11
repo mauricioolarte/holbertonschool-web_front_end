@@ -12,13 +12,14 @@
 </head>
 
 <body>
-	<h1>Small title</h1>
-	<h1>Big title</h1>
+	<h1 class="d-md-none">Small title</h1>
+	<h1 class="d-none d-md-block">Big title</h1>
 
-	<div>
-		<div>Left</div>
-		<div>Middle</div>
-		<div>Right</div>
+	<div class="container-md m-0 d-flex flex-row justify-content-between p-1 bg-info border border-info rounded ">
+		<div class="text-light border-light border-bottom border-start m-1 p-1">Left</div>
+		<div class="d-none d-md-block text-light border-light border border-top-0 m-1 p-1 shadow">
+			Middle</div>
+		<div class="text-light border-light border-end border-bottom m-1 p-1">Right</div>
 	</div>
 
 </body>
