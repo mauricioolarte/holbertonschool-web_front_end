@@ -1,6 +1,6 @@
-const {
-	performance
-} = require('perf_hooks');
+// const {
+// 	performance
+// } = require('perf_hooks');
 
 function countPrimeNumbers() {
 	const time0 = performance.now();
