@@ -10,8 +10,12 @@
 	<script type="text/javascript">
 		function createFamilyTree() {
 
-			$("body").append(("<table/>").append(("<tr/>").append(("<td/>").text("Firstname"), ("<td/>").text("Lastname"))));
-
+			$("body").append($("<table/>").append(
+				$("<tr/>").append($("<th/>").text("Firstname"), $("<th/>").text("Lastname")),
+				$("<tr/>").append($("<td/>").text("Guillaume"), $("<td/>").text("Salva")),
+				$("<tr/>").append($("<td/>").text("Paulette"), $("<td/>").text("Salva")),
+				$("<tr/>").append($("<td/>").text("Antoine"), $("<td/>").text("Salva")),
+			))
 		}
 		$(document).ready(createFamilyTree);
 	</script>
