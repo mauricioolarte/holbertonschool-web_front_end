@@ -4,19 +4,23 @@
 <head>
 
 	<meta charset="utf-8" />
-	<title>Task 2</title>
+	<title>Task 3</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
 		integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		function createFamilyTree() {
 
 			$("body").append($("<table/>").append(
-				$("<tr/>").append($("<th/>").text("Firstname"), $("<th/>").text("Lastname")),
-				$("<tr/>").append($("<td/>").text("Guillaume"), $("<td/>").text("Salva")),
-				$("<tr/>").append($("<td/>").text("Paulette"), $("<td/>").text("Salva")),
-				$("<tr/>").append($("<td/>").text("Antoine"), $("<td/>").text("Salva")),
-			))
+				$("<thead/>").append($("<tr/>").append($("<th/>").text("Firstname"), $("<th/>").text("Lastname"))),
+				$("<tbody/>").append(
+					$("<tr/>").append($("<td/>").text("Guillaume"), $("<td/>").text("Salva")),
+					$("<tr/>").append($("<td/>").text("Paulette"), $("<td/>").text("Salva")),
+					$("<tr/>").append($("<td/>").text("Antoine"), $("<td/>").text("Salva"))
+				)
+			)
+			)
 		}
+
 		$(document).ready(createFamilyTree);
 	</script>
 </head>

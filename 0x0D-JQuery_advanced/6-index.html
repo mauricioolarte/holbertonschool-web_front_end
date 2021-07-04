@@ -3,13 +3,48 @@
 
 <head>
 
-	<meta charset="utf-8" />
-	<title>Task 0</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-		integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-	<script type="text/javascript">
+    <meta charset="utf-8" />
+    <title>Task 6</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script type="application/javascript">
+        $(function () {
+            function createFamilyTree() {
+                $("body").append("<table><thead><tr><th>Firstname</th><th>Lastname</th></tr></thead></table>")
+                    .find("table").first().append("<tbody></tbody>");
+            }
+            function addNewMember(firstName, lastName, pos) {
+                let position = pos.toLowerCase();
+                let newRow = "<tr><td>" + firstName + "</td><td>" + lastName + "</td><td>(x)</td></tr>";
+                if (position === "before") $("body").find("tbody").first().prepend(newRow);
+                if (position !== "before") $("body").find("tbody").first().append(newRow);
 
-	</script>
+                let newElement = null;
+                if (position === "before") newElement = $("tbody").find("tr").first();
+                if (position !== "before") newElement = $("tbody").find("tr").last();
+                newElement.find("td").click(function () {
+                    newElement.remove();
+                });
+                newElement.find("td").last().css("background-color", "orange");
+            }
+            function createForm() {
+                let fields = '<input type="text"></input><input type="text"></input>'
+                let dropdown = '<select><option value="before">Before</option><option value="after">After</option></select>'
+                let submit = '<input type="submit"></input>'
+                let form = fields + dropdown + submit;
+                function submitMember() {
+                    let first = $("input:nth-of-type(1)").val();
+                    let last = $("input:nth-of-type(2)").val();
+                    let ubication = $("option:selected").first().text();
+                    addNewMember(first, last, ubication);
+                }
+                $("table").first().before(form);
+                $("body").find("input").last().click(submitMember);
+            }
+            createFamilyTree();
+            createForm();
+        });
+    </script>
 
 </head>
 

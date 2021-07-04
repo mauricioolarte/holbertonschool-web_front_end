@@ -4,11 +4,84 @@
 <head>
 
 	<meta charset="utf-8" />
-	<title>Task 0</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-		integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-	<script type="text/javascript">
+	<title>Task 12</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script type="application/javascript">
+		$(function () {
+			function buildForm() {
+				let auth = '<div><label for="author">Author</label><input id="author" type="text"></input></div>'
+				let title = '<div><label for="title">Title</label><textarea id="title"></textarea></div>'
+				let submit = '<input type="submit" id="sendForm"></input><p></p>'
+				let form = '<form id="form">' + auth + title + submit + '</form>'
+				$("body").append(form);
 
+				$("input, textarea").keypress(function (e) {
+					if (e.which === 13) {
+						sendForm();
+						return false;
+					}
+				})
+			}
+			function sendForm() {
+				$("#form").after("<p>About to send the query to the API</p>");
+				let values = {};
+
+				values.title = $("#title").val();
+				values.author = $("#author").val();
+
+				$.ajax({
+					url: "http://127.0.0.1:3000/posts",
+					method: "POST",
+					data: values,
+					error: function (values, stat) {
+						alert("Error sending the POST query");
+					}
+				}).done(data => {
+					addPostRow(data)
+				});
+			}
+			function addPostRow(data) {
+				let id = data.id;
+				let title = data.title;
+				let author = data.author;
+				$("body").append('<p class="row-' + id + '"' + '><span class="delete">(delete)</span><span>Post created with id: ' + id + ", title: " + title + ", author: " + author + "</span></p>");
+			}
+			function listPosts() {
+				$.ajax({
+					url: "http://127.0.0.1:3000/posts",
+					method: "GET",
+					error: function (values, stat) {
+						alert("Server Error");
+					}
+				}).done((data) => {
+					for (element of data) {
+						addPostRow(element);
+					};
+				});
+			}
+			function deletePost(id) {
+				$.ajax({
+					url: "http://127.0.0.1:3000/posts/" + id,
+					method: "DELETE",
+					error: function () {
+						alert("Post was not deleted");
+					}
+				}).done(data => {
+					$(".row-" + id).remove()
+				});
+			}
+			buildForm();
+			listPosts();
+			$("#sendForm").click((e) => { sendForm() });
+			$(document).on("click", "span", function () {
+				if ($(this).attr("class") === "delete") {
+					id = $(this).parent().attr("class").split("-")[1]
+					deletePost(id)
+				}
+			})
+
+		});
 	</script>
 
 </head>

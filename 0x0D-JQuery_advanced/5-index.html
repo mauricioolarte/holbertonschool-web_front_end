@@ -4,11 +4,31 @@
 <head>
 
 	<meta charset="utf-8" />
-	<title>Task 0</title>
+	<title>Task 5</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
 		integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-	<script type="text/javascript">
-
+	<script type="application/javascript">
+		$(function () {
+			function createFamilyTree() {
+				$("body").append("<table><thead><tr><th>Firstname</th><th>Lastname</th></tr></thead></table>")
+					.find("table").first().append("<tbody></tbody>");
+			}
+			function addNewMember(firstName, lastName) {
+				let newRow = "<tr><td>" + firstName + "</td><td>" + lastName + "</td><td>(x)</td></tr>";
+				$("body").find("tbody").first().append(newRow)
+				let member = $("tbody").find("tr").last()
+				member.find("td").click(function () {
+					member.remove();
+				});
+				member.find("td").last().css("background-color", "orange");
+			}
+			createFamilyTree();
+			addNewMember("Guillaume", "Salva");
+			addNewMember("Arielle", "Snizt");
+			addNewMember("Fanette", "Snizt");
+			addNewMember("Gerard", "Snizt");
+			addNewMember("Victor", "Salva");
+		});
 	</script>
 
 </head>

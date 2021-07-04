@@ -4,11 +4,33 @@
 <head>
 
 	<meta charset="utf-8" />
-	<title>Task 0</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-		integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-	<script type="text/javascript">
+	<title>Task 10</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script type="application/javascript">
+		$(function () {
+			function addPostRow(data) {
+				let id = data.id;
+				let title = data.title;
+				let author = data.author;
+				$("body").append("<p><span>Post created with id: " + id + ", title: " + title + ", author: " + author + "</span></p>");
+			}
+			function listPosts() {
 
+				$.ajax({
+					method: "get",
+					url: "http://127.0.0.1:3000/posts",
+					error: function (values, stat) {
+						alert("Server Error");
+					}
+				}).done((data) => {
+					for (element of data) {
+						addPostRow(element);
+					}
+				});
+			}
+			listPosts();
+		});
 	</script>
 
 </head>
