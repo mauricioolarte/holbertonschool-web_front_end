@@ -4,46 +4,136 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script>
-		function setCookies() {
-			let firstName = document.getElementById("firstName").value
-			let email = document.getElementById("email").value
 
-			let date = new Date()
-			let daysToExpire = 10
-			date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000))
-
-			expiresDate = "expires=" + date.toUTCString()
-			console.log(expiresDate)
-			document.cookie = `firstName=${firstName}; ${expiresDate}`
-			document.cookie = `email=${email}; ${expiresDate}`
-
-			document.getElementById("firstName").value = "";
-			document.getElementById("email").value = "";
-		}
-
-		function showCookies() {
-			let p = document.createElement("p");
-			p.textContent = "Cookies: " + document.cookie
-			document.body.append(p)
-		}
-	</script>
 	<title>Document</title>
 </head>
 
 <body>
-	<div>
-		<h1>Login to the website</h1>
-		<div>
-			<input type="text" id="firstName" placeholder="Firstname">
-			<input type="email" id="email" placeholder="Email">
-			<button onclick="setCookies()">Log me in</button>
-		</div>
-	</div>
-	<div>
-		<h1>Cookies</h1>
-		<button onclick="showCookies()">Show the cookies</button>
-	</div>
+
 </body>
+<script>
+	let availableItems = ["shampoo", "Soap", "Sponge", "water"]
+
+	function lsTest() {
+		var test = 'test';
+		try {
+			sessionStorage.setItem(test, test);
+			sessionStorage.removeItem(test);
+			return true;
+		} catch (e) {
+			return false;
+		}
+	}
+
+	function loadStore() {
+		if (lsTest() === true) {
+			createStore()
+			let h2Cart = document.createElement("h2")
+			h2Cart.textContent = "Your cart:"
+			document.body.append(h2Cart)
+			displayCart()
+		} else {
+			alert("Sorry, your browser does not support Web storage. Try again with a better one")
+		}
+	}
+
+	function getCartFromStorage() {
+		let cartJson = sessionStorage.getItem("cart")
+		if (cartJson == null) {
+			return {}
+		} else {
+			return JSON.parse(cartJson)
+		}
+	}
+
+	function addItemToCart(item) {
+		let cart = getCartFromStorage()
+		if (cart[item] == null) {
+			cart[item] = 0
+		}
+		cart[item] += 1
+
+		sessionStorage.setItem("cart", JSON.stringify(cart))
+		displayCart()
+	}
+
+	function removeItemfromCart(item) {
+		let cart = getCartFromStorage()
+		delete cart[item]
+		sessionStorage.setItem("cart", JSON.stringify(cart))
+		displayCart()
+	}
+
+	function clearCart() {
+		sessionStorage.clear()
+		displayCart()
+	}
+
+	function createStore() {
+		let h2 = document.createElement("h2")
+		h2.textContent = "Available products:"
+		document.body.append(h2)
+		let ul = document.createElement("ul")
+		document.body.append(ul)
+		availableItems.forEach(element => {
+			let ol = document.createElement("li")
+			ol.textContent = element
+			ol.onclick = () => {
+				addItemToCart(element)
+			}
+			ul.append(ol)
+		})
+	}
+
+	function displayCart() {
+
+		let div = document.getElementById("cartList")
+		if (div) {
+			div.innerHTML = ""
+		} else {
+			let listCart = document.createElement("div")
+			listCart.id = "cartList"
+			document.body.append(listCart)
+		}
+		updateCart()
+	}
+
+	function updateCart() {
+		let ul = document.createElement("ul")
+		ul.id = "cartElements"
+		let listC = document.getElementById("cartList")
+		let cart = getCartFromStorage()
+		if (Object.keys(cart).length === 0) {
+			li = document.createElement("li")
+			li.textContent = "Your cart is empty"
+			ul.append(li)
+			listC.append(ul)
+		} else {
+			let li = document.createElement("li")
+
+			li.textContent = "Clear my cart"
+			li.onclick = () => { clearCart() }
+			ul.append(li)
+
+			for (let key of Object.keys(cart)) {
+				let elementList = document.createElement("li")
+				elementList.textContent = `${key} x ${cart[key]}`
+				remove = document.createElement("span")
+				remove.textContent = "(remove)"
+				remove.onclick = () => { removeItemfromCart(key) }
+				elementList.append(remove)
+				ul.append(elementList)
+			}
+			listC.append(ul)
+		}
+	}
+
+
+
+
+
+
+	window.onload = loadStore()
+</script>
 
 </html>

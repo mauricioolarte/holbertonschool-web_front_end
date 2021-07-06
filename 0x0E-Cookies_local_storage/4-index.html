@@ -4,35 +4,87 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
 	<script>
 		function setCookies() {
 			let firstName = document.getElementById("firstName").value
 			let email = document.getElementById("email").value
 
-			let date = new Date()
-			let daysToExpire = 10
-			date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000))
-
-			expiresDate = "expires=" + date.toUTCString()
-			console.log(expiresDate)
-			document.cookie = `firstName=${firstName}; ${expiresDate}`
-			document.cookie = `email=${email}; ${expiresDate}`
+			Cookies.set("firstname", firstName, { expires: 10 })
+			Cookies.set("email", email, { expires: 10 })
 
 			document.getElementById("firstName").value = "";
 			document.getElementById("email").value = "";
+			location.reload()
 		}
 
 		function showCookies() {
 			let p = document.createElement("p");
-			p.textContent = "Cookies: " + document.cookie
+			p.textContent = "Email: " + Cookies.get("email") + " - " + "Firstname: " + Cookies.get("firstname")
 			document.body.append(p)
 		}
+		function showForm() {
+			let welcome = ""
+			if (document.getElementById("welcome")) {
+				welcome = document.getElementById("welcome")
+			}
+			if (welcome) {
+				welcome.remove()
+			}
+			let form = document.getElementById("form")
+			if (form.style.display === "none") {
+				form.style.display = "block"
+			}
+		}
+
+		function hideForm() {
+			let form = document.getElementById("form")
+			if (form.style.display === "block") {
+				form.style.display = "none"
+			}
+		}
+
+		function deleteCookiesAndShowForm() {
+			Cookies.remove("firstname")
+			Cookies.remove("email")
+
+			showForm()
+
+		}
+
+		function showWelcomeMessageOrForm() {
+			if (Cookies.get("firstname") === "") {
+				showForm()
+			} else {
+				hideForm()
+				let loguot = document.createElement("a")
+				loguot.className = "logout"
+				loguot.href = "http://127.0.0.1:5500/3-index.html"
+				loguot.text = "(logout)"
+				loguot.onclick = () => { deleteCookiesAndShowForm() }
+				let newWelcome = document.createElement("p")
+				newWelcome.textContent = "Welcome " + Cookies.get("firstname") + " "
+				newWelcome.append(loguot)
+				document.body.append(newWelcome)
+			}
+
+		}
+
+		window.onload = showWelcomeMessageOrForm
 	</script>
 	<title>Document</title>
+	<style>
+		.logout {
+			font-weight: normal;
+			font-size: 10px;
+			font-style: italic;
+		}
+	</style>
 </head>
 
 <body>
-	<div>
+	<div id="form" style="display: block;">
 		<h1>Login to the website</h1>
 		<div>
 			<input type="text" id="firstName" placeholder="Firstname">
@@ -40,10 +92,5 @@
 			<button onclick="setCookies()">Log me in</button>
 		</div>
 	</div>
-	<div>
-		<h1>Cookies</h1>
-		<button onclick="showCookies()">Show the cookies</button>
-	</div>
-</body>
 
 </html>

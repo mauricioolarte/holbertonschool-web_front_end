@@ -4,46 +4,75 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script>
-		function setCookies() {
-			let firstName = document.getElementById("firstName").value
-			let email = document.getElementById("email").value
 
-			let date = new Date()
-			let daysToExpire = 10
-			date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000))
-
-			expiresDate = "expires=" + date.toUTCString()
-			console.log(expiresDate)
-			document.cookie = `firstName=${firstName}; ${expiresDate}`
-			document.cookie = `email=${email}; ${expiresDate}`
-
-			document.getElementById("firstName").value = "";
-			document.getElementById("email").value = "";
-		}
-
-		function showCookies() {
-			let p = document.createElement("p");
-			p.textContent = "Cookies: " + document.cookie
-			document.body.append(p)
-		}
-	</script>
 	<title>Document</title>
 </head>
 
 <body>
-	<div>
-		<h1>Login to the website</h1>
-		<div>
-			<input type="text" id="firstName" placeholder="Firstname">
-			<input type="email" id="email" placeholder="Email">
-			<button onclick="setCookies()">Log me in</button>
-		</div>
-	</div>
-	<div>
-		<h1>Cookies</h1>
-		<button onclick="showCookies()">Show the cookies</button>
-	</div>
+
 </body>
+<script>
+	let availableItems = ["shampoo", "Soap", "Sponge", "water"]
+
+	function lsTest() {
+		var test = 'test';
+		try {
+			localStorage.setItem(test, test);
+			localStorage.removeItem(test);
+			return true;
+		} catch (e) {
+			return false;
+		}
+	}
+
+	function displayCart() {
+		let counter = 0;
+		availableItems.forEach(element => {
+			if (localStorage.getItem(element)) {
+				counter += 1
+			}
+		})
+		if (counter) {
+			p = document.createElement("p")
+			p.textContent = `You previously had ${counter} items in your cart`
+			console.log(`You previously had ${counter} items in your cart`)
+			document.body.append(p)
+		}
+
+	}
+	function loadStore() {
+		if (lsTest() === true) {
+			createStore()
+			displayCart()
+		} else {
+			alert("Sorry, your browser does not support Web storage. Try again with a better one")
+		}
+	}
+
+
+	function addItemToCart(item) {
+		localStorage.setItem(item, "true");
+		location.reload()
+	}
+
+	function createStore() {
+		let ul = document.createElement("ul")
+		document.body.append(ul)
+		availableItems.forEach(element => {
+			console.log(element)
+			ol = document.createElement("li")
+			ol.textContent = element
+			ol.onclick = () => {
+				addItemToCart(element)
+			}
+			ul.append(ol)
+		})
+
+
+
+	}
+
+	window.onload = loadStore()
+</script>
 
 </html>

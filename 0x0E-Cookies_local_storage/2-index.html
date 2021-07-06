@@ -14,7 +14,6 @@
 			date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000))
 
 			expiresDate = "expires=" + date.toUTCString()
-			console.log(expiresDate)
 			document.cookie = `firstName=${firstName}; ${expiresDate}`
 			document.cookie = `email=${email}; ${expiresDate}`
 
@@ -24,8 +23,18 @@
 
 		function showCookies() {
 			let p = document.createElement("p");
-			p.textContent = "Cookies: " + document.cookie
+			p.textContent = "Email: " + getCookie("email") + " - " + "Firstname: " + getCookie("firstName")
 			document.body.append(p)
+		}
+		function getCookie(name) {
+			let cookieSplit = document.cookie.split(";")
+			let cookieValue = ""
+			cookieSplit.forEach(element => {
+				if (element.search(name) >= 0) {
+					cookieValue = element.split("=")[1]
+				}
+			});
+			return cookieValue
 		}
 	</script>
 	<title>Document</title>
